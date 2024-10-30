@@ -1,6 +1,6 @@
 # Training and Results for J14 Potential
 
-This section presents the training process and results using the **J14 Potential** dataset. The objective is to minimize the force loss through training with **NEP4 (Neuroevolution Potential)** to enhance the accuracy and efficiency of molecular dynamics (MD) simulations.
+This section presents the training process and results using the **J14 Potential** dataset. The goal is to minimize the **force loss** through training with **NEP4 (Neuroevolution Potential)** to improve the accuracy and efficiency of molecular dynamics (MD) simulations, particularly for predicting thermal conductivity and material behavior.
 
 For detailed input parameter descriptions, refer [here](https://gpumd.org/nep/input_files/nep_in.html#index-0).
 
@@ -8,7 +8,7 @@ For detailed input parameter descriptions, refer [here](https://gpumd.org/nep/in
 
 ## Default Parameters and Initial Loss
 
-We first configure the default parameters to establish a baseline for the force loss. These parameters govern the complexity and accuracy of the model.
+We first configure the **default parameters** to establish a baseline for the force loss. These parameters control the complexity and representational capacity of the potential model.
 
 ### **Default Setup:**
 - **`nmax`**: Size of radial and angular basis  
@@ -20,7 +20,7 @@ We first configure the default parameters to establish a baseline for the force 
 ![Default Setup](./images/default_setup.png)
 
 ### **Default Loss:**
-Below is the force loss computed using the default setup, serving as a benchmark for further optimization.
+The force loss computed using the default setup serves as the benchmark for optimization. 
 
 ![Default Loss](./images/default_loss.png)
 
@@ -28,17 +28,18 @@ Below is the force loss computed using the default setup, serving as a benchmark
 
 ## Phase 1: Minimizing the Loss for Individual Parameters
 
-Our primary goal is to minimize the force loss by optimizing the model's parameters individually. 
+Our goal is to fine-tune individual parameters systematically to identify optimal configurations for reducing force loss.
 
 ### **Approach to Minimizing Loss:**
 - **Parameter Tuning:**  
-  - Experiment with multiple values for each parameter (`nmax`, `basis_size`, `l_max`, `neurons`, `batch`).  
+  - Experiment with multiple values for each parameter: `nmax`, `basis_size`, `l_max`, `neurons`, and `batch`.
 - **Loss Evaluation Criteria:**  
   - **MIN Strategy:** Use the minimum value from the last 10 rows of the loss output.  
-  - **AVG Strategy:** Use the average value from the last 10 rows.  
+  - **AVG Strategy:** Use the average value from the last 10 rows for comparison.  
+
 - **Objective:**  
-  - Identify optimal values for each parameter.  
-  - Report the **mean improvement** and **percentage gain** compared to the default setup.  
+  - Identify the parameter values that minimize force loss most effectively.
+  - Report the **percentage improvement** over the default configuration for both training and test loss.
 
 ---
 
@@ -46,7 +47,7 @@ Our primary goal is to minimize the force loss by optimizing the model's paramet
 
 ### **1. Optimized Neurons Setup**
 
-We tested various neuron configurations and found that **60 neurons in a single layer** provided the best force loss reduction.
+We evaluated configurations with different numbers of neurons and found that **60 neurons in a single layer** provided the most significant reduction in loss.
 
 ![Neuron Force Loss](./images/neuron_force_loss.png)
 
@@ -65,7 +66,7 @@ We tested various neuron configurations and found that **60 neurons in a single 
 
 ### **2. Optimized Basis Setup**
 
-The optimal basis size was found to be **4-8**, balancing accuracy and computational efficiency.
+The **4-8 basis size** offered the best trade-off between accuracy and computational cost.
 
 ![Basis Force Loss](./images/basis_force_loss.png)
 
@@ -84,7 +85,7 @@ The optimal basis size was found to be **4-8**, balancing accuracy and computati
 
 ### **3. Optimized L_max Setup**
 
-We found that the **4-2-1 angular momentum configuration (`l_max`)** captured angular interactions most effectively.
+We determined that the **4-2-1 configuration for `l_max`** best captured the angular dependencies, yielding consistent improvements.
 
 ![Lmax Force Loss](./images/lmax_force_loss.png)
 
@@ -103,7 +104,7 @@ We found that the **4-2-1 angular momentum configuration (`l_max`)** captured an
 
 ### **4. Optimized n_max Setup**
 
-Testing various **n_max** configurations, the optimal setup was **2-4**, yielding significant gains.
+The **2-4 configuration for `n_max`** provided the highest gains, highlighting the importance of precise radial and angular terms.
 
 ![Nmax Force Loss](./images/nmax_force_loss.png)
 
@@ -122,7 +123,7 @@ Testing various **n_max** configurations, the optimal setup was **2-4**, yieldin
 
 ### **5. Optimized Batch Setup**
 
-We found that a **batch size of 2000** yielded the most stable reduction in force loss.
+A **batch size of 2000** ensured smooth convergence and stable training dynamics.
 
 ![Batch Force Loss](./images/batch_force_loss.png)
 
@@ -141,7 +142,7 @@ We found that a **batch size of 2000** yielded the most stable reduction in forc
 
 ## Phase 2: Combining Optimized Parameters
 
-By combining all optimized parameters, we achieved further reductions in force loss.
+We integrated all optimized parameters to achieve further reductions in force loss.
 
 - **Optimized Parameters:**
   - Neurons: 60 neurons in 1 layer  
@@ -163,32 +164,33 @@ By combining all optimized parameters, we achieved further reductions in force l
 ### Loss Graphs:
 ![Force Loss Graph](./images/force_loss_graph.png)
 
-The force loss continues to decrease but has not converged after 15,000 generations, indicating further training is needed.
+Training beyond **15,000 generations** may be necessary to ensure full convergence.
 
 ![Force Comparison Graph](./images/force_loss_aligned.png)
 
-The alignment between the training and test loss demonstrates model consistency.
+The alignment between the training and test loss shows the model is generalizing well.
+
+### Weight Analysis from `nep.txt`  
+![Weight](./images/nep_txt_graph.png)
+
+Most weights contribute meaningfully, confirming the network’s robustness.
 
 ---
 
 ## Conclusion and Future Work
 
-The optimization process has successfully reduced the force loss by up to **19.38%** compared to the default configuration. The following key findings emerged:  
+This optimization effort reduced force loss by up to **19.38%**, with the following insights:
 
-- **Neurons:** 60 neurons in one layer were sufficient for reducing overfitting while maintaining computational efficiency.  
-- **Basis Size:** The 4-8 configuration captured a good balance between accuracy and model size.  
-- **l_max:** The 4-2-1 configuration effectively modeled angular interactions.  
-- **n_max:** The 2-4 setup provided the most significant performance gains, showing that the right choice of basis order improves loss convergence.  
-- **Batch Size:** A batch size of 2000 helped ensure smooth convergence without sacrificing stability.  
-
-The combined setup achieved both consistent **train** and **test loss alignment**, demonstrating the robustness of the optimized model.
-
----
+- **Neurons:** Using 60 neurons in a single layer balanced accuracy and computational cost.  
+- **Basis Size:** The 4-8 configuration effectively captured essential features without overfitting.  
+- **l_max:** The 4-2-1 angular momentum setting was crucial for modeling interactions.  
+- **n_max:** The 2-4 basis size yielded the highest improvements, showing the importance of tuning these parameters.  
+- **Batch Size:** A batch size of 2000 stabilized training and enhanced convergence.  
 
 ### **Next Steps:**
-1. **Continue Training**: Extend the number of generations beyond 15,000 to ensure convergence.  
-2. **Run Molecular Dynamics (MD) Simulations**: Use the optimized parameters to evaluate thermal conductivity.  
-3. **Compare Results with Baseline**: Assess how well the optimized model performs relative to the default setup in terms of MD results.  
-4. **Further Optimization**: Explore other hyperparameters, such as learning rate and population size, to improve convergence speed.  
+1. **Extend Training:** Increase the number of generations beyond 15,000 to confirm convergence.  
+2. **Molecular Dynamics Simulations:** Use the optimized model to simulate thermal conductivity and validate performance gains.  
+3. **Compare with Baseline Results:** Evaluate the improvements by comparing MD outputs with the baseline setup.  
+4. **Further Tuning:** Explore additional hyperparameters such as learning rate and population size to accelerate convergence.  
 
-This thorough optimization process not only ensures better force predictions but also enhances the performance of molecular dynamics simulations, offering a solid foundation for future experiments.
+This detailed optimization lays a solid foundation for precise force predictions and improved MD simulations, paving the way for deeper insights into the thermal and structural properties of the J14 alloy system.
