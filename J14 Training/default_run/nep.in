@@ -1,0 +1,15 @@
+type          6 Mg Ni Zn Co Cu O # this is a mandatory keyword
+version       3       # default
+cutoff        8.4 3.9     # default
+n_max         10 9    # default
+basis_size    12 12     # default
+l_max         4 2 0   # default
+neuron        30 30      # default
+lambda_1      0.05    # default
+lambda_2      0.05    # default
+lambda_e      1.0     # default
+lambda_f      5.0     # default
+lambda_v      1.0     # default
+batch         1000    # default
+population    200      # default
+generation    15000  # default
