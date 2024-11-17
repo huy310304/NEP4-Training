@@ -233,15 +233,15 @@ This analysis suggests that **future work** could delve into identifying which s
 This optimization effort reduced force loss by up to **19.38%**, with the following insights:
 
 - **Neurons:** Using 60 neurons in a single layer balanced accuracy and computational cost.  
-- **Basis Size:** The 4-8 configuration effectively captured essential features without overfitting.  
+- **Basis Size:** The 4-8 configuration effectively captured essential features without overfitting. However, We could argue that 
 - **l_max:** The 4-2-1 angular momentum setting was crucial for modeling interactions.  
-- **n_max:** The 2-4 basis size yielded the highest improvements, showing the importance of tuning these parameters.  
+- **n_max:** The 2-4 basis size yielded the highest improvements, showing the importance of tuning these parameters. However, Nmax=6-6 seems to be promising and almost as good as Nmax = 2-4, even though better convergence is required to draw a definitive conclusion
 - **Batch Size:** A batch size of 2000 stabilized training and enhanced convergence.  
 
 ### **Next Steps:**
 1. **Extend Training:** Increase the number of generations beyond 15,000 to confirm convergence.  
 2. **Molecular Dynamics Simulations:** Use the optimized model to simulate thermal conductivity and validate performance gains.  
 3. **Compare with Baseline Results:** Evaluate the improvements by comparing MD outputs with the baseline setup.  
-4. **Further Tuning:** Explore additional hyperparameters such as learning rate and population size to accelerate convergence.  
+4. **Further Tuning:** Explore additional hyperparameters such as learning rate and population size to accelerate convergence. For example, we can test different nmax and basis-size as suggested above with 100K generations to see which yeilds better convergence in the long run.
 
 This detailed optimization lays a solid foundation for precise force predictions and improved MD simulations, paving the way for deeper insights into the thermal and structural properties of the J14 alloy system.
