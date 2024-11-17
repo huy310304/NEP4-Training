@@ -1,5 +1,28 @@
 # Training and Results for J14 Potential
 
+## Table of Contents
+
+1. [Introduction](#introduction)
+2. [Default Parameters and Initial Loss](#default-parameters-and-initial-loss)  
+    2.1 [Default Setup](#default-setup)  
+    2.2 [Default Loss](#default-loss)  
+3. [Phase 1: Minimizing the Loss for Individual Parameters](#phase-1-minimizing-the-loss-for-individual-parameters)  
+    3.1 [Approach to Minimizing Loss](#approach-to-minimizing-loss)  
+4. [Optimized Parameter Configurations and Results](#optimized-parameter-configurations-and-results)  
+    4.1 [Optimized Neurons Setup](#optimized-neurons-setup)  
+    4.2 [Optimized Basis Setup](#optimized-basis-setup)  
+    4.3 [Optimized Angular Expansion (`l_max`) Setup](#optimized-angular-expansion-l_max-setup)  
+    4.4 [Optimized Radial Expansion (`n_max`) Setup](#optimized-radial-expansion-n_max-setup)  
+    4.5 [Optimized Batch Size Setup](#optimized-batch-size-setup)  
+5. [Phase 2: Combining Optimized Parameters](#phase-2-combining-optimized-parameters)  
+6. [Loss Graphs and Analysis](#loss-graphs-and-analysis)  
+    6.1 [Force Loss Graph](#force-loss-graph)  
+    6.2 [Force Comparison Graph](#force-comparison-graph)  
+    6.3 [Weight Analysis from `nep.txt`](#weight-analysis-from-neptxt)  
+7. [Conclusion and Future Work](#conclusion-and-future-work)
+
+## Introduction
+
 This section presents the training process and results using the **J14 Potential** dataset. The goal is to minimize the **force loss** through training with **NEP4 (Neuroevolution Potential)** to improve the accuracy and efficiency of molecular dynamics (MD) simulations, particularly for predicting thermal conductivity and material behavior.
 
 For detailed input parameter descriptions, refer [here](https://gpumd.org/nep/input_files/nep_in.html#index-0).
