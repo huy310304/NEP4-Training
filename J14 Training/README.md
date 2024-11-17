@@ -8,7 +8,7 @@
     2.2 [Default Loss](#default-loss)  
 3. [Phase 1: Minimizing the Loss for Individual Parameters](#phase-1-minimizing-the-loss-for-individual-parameters)  
     3.1 [Approach to Minimizing Loss](#approach-to-minimizing-loss)  
-    3.2[Optimized Parameter Configurations and Results](#optimized-parameter-configurations-and-results)  
+    3.2 [Optimized Parameter Configurations and Results](#optimized-parameter-configurations-and-results)  
         3.2.1 [Optimized Neurons Setup](#optimized-neurons-setup)  
         3.2.2 [Optimized Basis Setup](#optimized-basis-setup)  
         3.2.3 [Optimized Angular Expansion (`l_max`) Setup](#optimized-angular-expansion-l_max-setup)  
