@@ -19,7 +19,7 @@
    - [Force Loss Graph](#force-loss-graph)  
    - [Force Comparison Graph](#force-comparison-graph)  
    - [Weight Analysis from `nep.txt`](#weight-analysis-from-neptxt)  
-6. [Conclusion and Future Work](#conclusion-and-future-work)
+6. [Conclusion and Future Work](#conclusion-and-future-work-for-phase-1-and-phase-2)
 
 ## Introduction
 
@@ -251,7 +251,7 @@ Additionally, if there were many weights near zero, it might imply that the mode
 This analysis suggests that **future work** could delve into identifying which specific descriptors contribute most to accurate predictions, as this could inform further refinements in the model architecture or descriptor set. Overall, the weight distribution confirms that the network is both effective and efficient, making meaningful use of all trained parameters.
 
 
-## Conclusion and Future Work
+## Conclusion and Future Work for Phase 1 and Phase 2
 
 This optimization effort reduced force loss by up to **19.38%**, with the following insights:
 
@@ -268,3 +268,12 @@ This optimization effort reduced force loss by up to **19.38%**, with the follow
 4. **Further Tuning:** Explore additional hyperparameters such as learning rate and population size to accelerate convergence. For example, we can test different nmax and basis-size as suggested above with 100K generations to see which yeilds better convergence in the long run.
 
 This detailed optimization lays a solid foundation for precise force predictions and improved MD simulations, paving the way for deeper insights into the thermal and structural properties of the J14 alloy system.
+
+## Phase 3: Convergence Validation for more generations
+
+After the conclusions for Phase 1 and Phase 2, which prove a solid approach and foundation, this phase is used to validate the approach and optimization results in the long runs, which metrics expected to see more going down convergence and minimize the force loss, as expectedly, to lower than 0.01, with reasonable amount of time and resources used as another factor too.
+
+### Optimization Setups for 100K Generations
+
+
+
