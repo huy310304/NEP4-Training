@@ -8,18 +8,18 @@
     2.2 [Default Loss](#default-loss)  
 3. [Phase 1: Minimizing the Loss for Individual Parameters](#phase-1-minimizing-the-loss-for-individual-parameters)  
     3.1 [Approach to Minimizing Loss](#approach-to-minimizing-loss)  
-4. [Optimized Parameter Configurations and Results](#optimized-parameter-configurations-and-results)  
-    4.1 [Optimized Neurons Setup](#optimized-neurons-setup)  
-    4.2 [Optimized Basis Setup](#optimized-basis-setup)  
-    4.3 [Optimized Angular Expansion (`l_max`) Setup](#optimized-angular-expansion-l_max-setup)  
-    4.4 [Optimized Radial Expansion (`n_max`) Setup](#optimized-radial-expansion-n_max-setup)  
-    4.5 [Optimized Batch Size Setup](#optimized-batch-size-setup)  
-5. [Phase 2: Combining Optimized Parameters](#phase-2-combining-optimized-parameters)  
-6. [Loss Graphs and Analysis](#loss-graphs-and-analysis)  
+    3.2[Optimized Parameter Configurations and Results](#optimized-parameter-configurations-and-results)  
+        3.2.1 [Optimized Neurons Setup](#optimized-neurons-setup)  
+        3.2.2 [Optimized Basis Setup](#optimized-basis-setup)  
+        3.2.3 [Optimized Angular Expansion (`l_max`) Setup](#optimized-angular-expansion-l_max-setup)  
+        3.2.4 [Optimized Radial Expansion (`n_max`) Setup](#optimized-radial-expansion-n_max-setup)  
+        3.2.5 [Optimized Batch Size Setup](#optimized-batch-size-setup)  
+4. [Phase 2: Combining Optimized Parameters](#phase-2-combining-optimized-parameters)  
+5. [Loss Graphs and Analysis](#loss-graphs-and-analysis)  
     6.1 [Force Loss Graph](#force-loss-graph)  
     6.2 [Force Comparison Graph](#force-comparison-graph)  
     6.3 [Weight Analysis from `nep.txt`](#weight-analysis-from-neptxt)  
-7. [Conclusion and Future Work](#conclusion-and-future-work)
+6. [Conclusion and Future Work](#conclusion-and-future-work)
 
 ## Introduction
 
@@ -81,13 +81,13 @@ To refine our model, we undertake a structured tuning process, involving the fol
 
 Through this systematic optimization, we build a foundation for fine-tuning the NEP model and achieving substantial reductions in force loss. This incremental approach also provides insights into how different parameters contribute to the overall performance, setting the stage for further combined optimizations in the next phase.
 
-## Optimized Parameter Configurations and Results
+### Optimized Parameter Configurations and Results
 
 In this section, we evaluate the effects of tuning individual parameters to achieve optimal force loss reduction. Each configuration focuses on a single parameter adjustment while keeping the rest at their default settings, allowing us to observe the direct impact of each parameter on model performance.
 
 ---
 
-### **1. Optimized Neurons Setup**
+#### **1. Optimized Neurons Setup**
 
 We experimented with different neuron counts in the hidden layer to identify the configuration that provided the best reduction in force loss. After evaluating various setups, we found that **60 neurons in a single hidden layer** offered the most effective balance, achieving significant improvement without adding unnecessary complexity.
 
@@ -110,7 +110,7 @@ The reduction in both train and test losses indicates that this neuron configura
 
 ---
 
-### **2. Optimized Basis Setup**
+#### **2. Optimized Basis Setup**
 
 The number of basis functions determines the complexity of the atomic descriptor, impacting the model’s ability to generalize and capture essential atomic interactions. A **4-8 basis size** offered the best trade-off between accuracy and computational efficiency, balancing the model’s representational capacity and performance.
 
@@ -133,7 +133,7 @@ This optimized basis setup shows improvements in both train and test loss, indic
 
 ---
 
-### **3. Optimized Angular Expansion (`l_max`) Setup**
+#### **3. Optimized Angular Expansion (`l_max`) Setup**
 
 The `l_max` parameter controls the angular expansion order, which influences the model’s ability to represent angular dependencies between atoms. After testing multiple values, we found that the **4-2-1 configuration for `l_max`** was the most effective, improving the model’s accuracy in predicting complex angular interactions.
 
@@ -156,7 +156,7 @@ The results show consistent improvements in both train and test losses, confirmi
 
 ---
 
-### **4. Optimized Radial Expansion (`n_max`) Setup**
+#### **4. Optimized Radial Expansion (`n_max`) Setup**
 
 The radial expansion parameter `n_max` controls the size of the radial basis functions, directly impacting the model’s ability to capture radial dependencies. The **2-4 configuration for `n_max`** provided the most significant improvements, underscoring the importance of accurately capturing radial terms to improve the prediction of atomic forces.
 
@@ -179,7 +179,7 @@ With a substantial decrease in both train and test losses, this configuration de
 
 ---
 
-### **5. Optimized Batch Size Setup**
+#### **5. Optimized Batch Size Setup**
 
 The batch size used during training affects the stability and efficiency of the optimization process. A **batch size of 2000** provided a smooth convergence and stable training dynamics, balancing memory use and computational efficiency.
 
