@@ -269,11 +269,51 @@ This optimization effort reduced force loss by up to **19.38%**, with the follow
 
 This detailed optimization lays a solid foundation for precise force predictions and improved MD simulations, paving the way for deeper insights into the thermal and structural properties of the J14 alloy system.
 
-## Phase 3: Convergence Validation for more generations
+## Phase 3: Convergence Validation for Extended Generations
 
-After the conclusions for Phase 1 and Phase 2, which prove a solid approach and foundation, this phase is used to validate the approach and optimization results in the long runs, which metrics expected to see more going down convergence and minimize the force loss, as expectedly, to lower than 0.01, with reasonable amount of time and resources used as another factor too.
+### Introduction
 
-### Optimization Setups for 100K Generations
+In Phase 3, we focus on **validating the optimization results over extended training runs** with **100,000 generations**. This phase aims to test the robustness and scalability of the parameter configurations identified in Phases 1 and 2. The primary goal is to determine whether further convergence can drive the **force loss/energy loss** below 0.01 while maintaining a balance between accuracy, training time, and resource consumption.
+
+---
+
+### Extended Optimization Setups and Rationale
+
+For this phase, we selected the **60 neurons in a single hidden layer** configuration, which showed the most promise in previous phases for balancing predictive accuracy and computational efficiency. While other configurations, such as alternative `n_max` or `basis_size` setups, performed well in shorter training runs, their long-term potential for further reducing force loss required validation.
+
+**Key Objectives:**
+1. **Test convergence stability**: Evaluate whether the model continues to improve or plateaus when trained for 100,000 generations.
+2. **Optimize time-efficiency trade-offs**: Identify setups that achieve convergence within a reasonable timeframe.
+3. **Achieve force loss < 0.01**: Aim for near-perfect force prediction accuracy.
+
+---
+
+### Results and Analysis
+
+#### **Force Loss Trends Over 100,000 Generations**
+
+![Force Loss 100K Generations](./images/100K_force_loss.png)
+
+The graph shows the force loss trends for 2+ setups, but we focus on 2:
+- **Optimized Energy Setup (30-30 Neurons)**: A configuration prioritizing energy descriptors over force.
+- **Default Setup (60 Neurons)**: The configuration from Phase 2 with 60 neurons in a single layer.
+
+**Observations:**
+- The **60 Neurons Default Setup** achieves a steady decline in force loss over 100,000 generations, eventually reaching **0.006153** energy test loss. This result demonstrates that the configuration is capable of achieving a energy loss below 0.01 with extended training.
+- The **Energy Setup (30-30 Neurons)**, while initially competitive, plateaus around **0.007121**. This indicates that prioritizing energy descriptors alone is less effective for long-term force loss minimization.
+
+#### **Comparison of Convergence Rates**
+
+![Convergence Timing 100K Generations](./images/100K_timing_comparison.png)
+
+The timing graph highlights the trade-offs between training time and loss reduction for the two setups:
+- The **60 Neurons Default Setup** requires slightly longer training time but consistently outperforms the Energy Setup in terms of force loss reduction.
+
+#### Future Work
+- Add in the data for force/energy optimization with 60 neurons
+
+
+
 
 
 
