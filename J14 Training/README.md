@@ -292,7 +292,7 @@ For this phase, we selected the **60 neurons in a single hidden layer** configur
 
 #### **Force Loss Trends Over 100,000 Generations**
 
-![Force Loss 100K Generations](./images/100K_force_loss.png)
+![Force Loss 100K Generations](./images/100K_Optimization.png)
 
 The graph shows the force loss trends for 2+ setups, but we focus on 2:
 - **Optimized Energy Setup (30-30 Neurons)**: A configuration prioritizing energy descriptors over force.
@@ -304,7 +304,7 @@ The graph shows the force loss trends for 2+ setups, but we focus on 2:
 
 #### **Comparison of Convergence Rates**
 
-![Convergence Timing 100K Generations](./images/100K_timing_comparison.png)
+![Convergence Timing 100K Generations](./images/100K_timing.png)
 
 The timing graph highlights the trade-offs between training time and loss reduction for the two setups:
 - The **60 Neurons Default Setup** requires slightly longer training time but consistently outperforms the Energy Setup in terms of force loss reduction.
